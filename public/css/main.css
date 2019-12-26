@@ -1,0 +1,10 @@
+.navbar .container_avatar{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.navbar .container_avatar img{
+    height: 100%;
+}

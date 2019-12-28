@@ -69,6 +69,7 @@ class UserController extends Controller
 
     public function updatePassword(Request $request){
         $user = \Auth::user();
+        
         /* VALIDAR DATOS DE LA REQUEST  */
         $validate = $this->validate($request, [
             'password' => ['required', 'min:8', 'confirmed']
@@ -89,6 +90,6 @@ class UserController extends Controller
 
     public function getImage($filename){
         $file = Storage::disk('users')->get($filename);
-        return new Response($file);
+        return new Response($file, 200);
     }
 }

@@ -5,11 +5,7 @@
         <div class="col-md-8">
 
             {{-- alerta --}}
-            @if (session('message'))
-            <div class="alert alert-success" role="alert">
-                {{ session('message') }}
-              </div>
-            @endif
+            @include('includes.message');
 
             {{-- configuracion basica --}}
             <div class="card">

@@ -26,3 +26,9 @@ Route::post('/user/update', 'UserController@update')->name('user.update');
 Route::post('/user/updatePassword', 'UserController@updatePassword')->name('user.updatePassword');
 
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
+
+Route::get('/image/create', 'ImageController@create')->name('image.create');
+
+Route::post('/image/upload', 'ImageController@upload')->name('image.upload');
+
+Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');

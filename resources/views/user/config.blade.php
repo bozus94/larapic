@@ -5,7 +5,7 @@
         <div class="col-md-8">
 
             {{-- alerta --}}
-            @include('includes.message');
+            @include('includes.message')
 
             {{-- configuracion basica --}}
             <div class="card">

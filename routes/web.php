@@ -19,16 +19,20 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+
+/* ROUTE USER */
 Route::get('/user/configuration', 'UserController@config')->name('user.config');
-
 Route::post('/user/update', 'UserController@update')->name('user.update');
-
 Route::post('/user/updatePassword', 'UserController@updatePassword')->name('user.updatePassword');
-
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
 
+
+/* ROUTE IMAGE */
 Route::get('/image/create', 'ImageController@create')->name('image.create');
-
 Route::post('/image/upload', 'ImageController@upload')->name('image.upload');
-
 Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');
+Route::get('/image/{filename}', 'ImageController@detail')->name('image.detail');
+
+/* ROUTE COMMMENT */
+Route::post('/comment/newComment', 'CommentController@newComment')->name('comment.new');
+Route::get('/comment/newComment/{comment_id}', 'CommentController@deleteComment')->name('comment.delete');

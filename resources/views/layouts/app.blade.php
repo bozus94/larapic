@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'larapic') }}</title>
 
     <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/ef2c5d8479.js" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->

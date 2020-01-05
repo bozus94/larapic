@@ -6,7 +6,7 @@ use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\support\facades\File;
-use Illuminate\support\facades\Storage;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -69,5 +69,14 @@ class ImageController extends Controller
     public function getImage($filename){
         $file = Storage::disk('images')->get($filename);
         return new Response($file, 200);
+    }
+
+    public function detail($id){
+        $image = Image::find($id);
+
+        return view('images.detail', [
+            'image' => $image,
+            'home' => false
+        ]);
     }
 }

@@ -36,3 +36,7 @@ Route::get('/image/{filename}', 'ImageController@detail')->name('image.detail');
 /* ROUTE COMMMENT */
 Route::post('/comment/newComment', 'CommentController@newComment')->name('comment.new');
 Route::get('/comment/newComment/{comment_id}', 'CommentController@deleteComment')->name('comment.delete');
+
+/* ROUTE LIKE */
+Route::get('/like/{image_id}', 'LikeController@like')->name('like');
+Route::get('/dislike/{image_id}', 'LikeController@dislike')->name('like.dislike');

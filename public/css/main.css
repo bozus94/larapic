@@ -148,3 +148,21 @@ img {
 .container .pagination {
     margin-bottom: 0;
 }
+
+.profile.container .card.publi_image {
+    margin-top: 1.5rem;
+}
+
+.profile .publi_image .container_img_pub {
+    height: 280px;
+    width: 280px;
+    transition: transform .3s ease-in-out;
+}
+
+.profile .publi_image .container_img_pub:hover {
+    transform: scale(1.015);
+}
+
+.profile .publi_image .container_img_pub img {
+    height: 100%;
+}

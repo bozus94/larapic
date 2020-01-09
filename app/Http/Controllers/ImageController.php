@@ -10,43 +10,46 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
-    public function __constructor(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
-    public function create(){
+    public function create()
+    {
         return view('images.create');
     }
 
-    public function upload(Request $request){
-        /* 
-            VALIDAMOS LOS DATOS DE LA REQUEST 
+    public function upload(Request $request)
+    {
+        /*
+            VALIDAMOS LOS DATOS DE LA REQUEST
         **/
         $validate = $this->validate($request, [
             'description' => ['required', 'min:8'],
             'image_path' => ['required', 'image'],
         ]);
 
-        /* 
+        /*
            RECOGEMOS LOS DATOS DE LA REQUEST
         **/
         $image_path = $request->file('image_path');
         $description = $request->input('description');
 
-        /* 
-            ASIGNAMOS LOS LOS VALORES LA OBEJETO IMAGEN 
+        /*
+            ASIGNAMOS LOS LOS VALORES LA OBEJETO IMAGEN
         **/
-                $idUser = \Auth::user()->id;
+        $idUser = \Auth::user()->id;
         $image = new Image();
         $image->user_id = $idUser;
         $image->image_path = null;
         $image->description = $description;
 
-        /* 
+        /*
             GUARDAMOS LA IMAGEN EN EL DISCO
-        **/    
+        **/
 
-        if($image_path){
+        if ($image_path) {
             /* seteamos el nombre del archivo */
             $image_name = time().$image_path->getClientOriginalName();
             var_dump($image_name);
@@ -55,28 +58,29 @@ class ImageController extends Controller
         }
 
 
-        /* 
-            EJECUTADO LA INSERCION Y ACCIONES POSTERIORES 
+        /*
+            EJECUTADO LA INSERCION Y ACCIONES POSTERIORES
         **/
         $image->save();
 
         return redirect()->route('home')->with([
             'message' => 'La foto se publico exitosamente'
         ]);
-
     }
 
-    public function getImage($filename){
+    public function getImage($filename)
+    {
         $file = Storage::disk('images')->get($filename);
         return new Response($file, 200);
     }
 
-    public function detail($id){
+    public function detail($id)
+    {
         $image = Image::find($id);
 
         return view('images.detail', [
             'image' => $image,
-            'home' => false
+            'compact' => false
         ]);
     }
 }

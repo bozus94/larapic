@@ -1,16 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container home py-4">
+<div class="container">
+
+</div>
+<div class="container py-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @include('includes.message')
-            @foreach ($images as $image)
-            @include('includes.imageView')
+            @foreach ($likes as $like)
+            @include('includes.imageView', ['image' => $like->image])
             @endforeach
             {{-- Paginacion --}}
             <div class="mt-4 d-flex justify-content-center">
-                {{$images->links()}}
+                {{$likes->links()}}
             </div>
         </div>
     </div>

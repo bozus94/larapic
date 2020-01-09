@@ -27,9 +27,7 @@ class HomeController extends Controller
         $images = Image::orderBy('id', 'desc')->paginate(5);
         return view('home', [
             'images' => $images,
-            'home' => true
+            'compact' => true
         ]);
     }
-
-     
 }

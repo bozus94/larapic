@@ -25,7 +25,7 @@ Route::get('/user/configuration', 'UserController@config')->name('user.config');
 Route::post('/user/update', 'UserController@update')->name('user.update');
 Route::post('/user/updatePassword', 'UserController@updatePassword')->name('user.updatePassword');
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
-
+Route::get('/profile/{user_name}', 'UserController@profile')->name('user.profile');
 
 /* ROUTE IMAGE */
 Route::get('/image/create', 'ImageController@create')->name('image.create');
@@ -40,3 +40,4 @@ Route::get('/comment/newComment/{comment_id}', 'CommentController@deleteComment'
 /* ROUTE LIKE */
 Route::get('/like/{image_id}', 'LikeController@like')->name('like');
 Route::get('/dislike/{image_id}', 'LikeController@dislike')->name('like.dislike');
+Route::get('/favorites', 'LikeController@favorites')->name('like.favorites');

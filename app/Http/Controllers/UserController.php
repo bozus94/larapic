@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\support\facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\support\facades\Storage;
-use Illuminate\support\facades\File;
 
 class UserController extends Controller
 {
@@ -15,14 +17,13 @@ class UserController extends Controller
         $this->middleware('auth');
     }
     
-    public function config(){
+    public function config()
+    {
         return view('user.config');
     }
 
-    public function update(Request $request){
-
-        
-
+    public function update(Request $request)
+    {
         $user = \Auth::user();
         $id = $user->id;
 
@@ -48,7 +49,7 @@ class UserController extends Controller
 
         /* RECOGER LA IMAGEN */
         $image_path = $request->file('image_path');
-        if($image_path){
+        if ($image_path) {
             /* asingnar nombre unico */
             $image_name = time().$image_path->getClientOriginalName();
 
@@ -67,7 +68,8 @@ class UserController extends Controller
                          ->with(['message' => 'Usuario actualizado correctamente']);
     }
 
-    public function updatePassword(Request $request){
+    public function updatePassword(Request $request)
+    {
         $user = \Auth::user();
         
         /* VALIDAR DATOS DE LA REQUEST  */
@@ -84,12 +86,24 @@ class UserController extends Controller
 
         /* EJECTUANDO LA SENTENCIA SQL Y ACCIONES POSTERIORES */
         $save = $user->update();
-       return redirect()->route('user.config')
+        return redirect()->route('user.config')
                         ->with(['message' => 'Se actualizo tu contraseña existosamente']);
     }
 
-    public function getImage($filename){
+    public function getImage($filename)
+    {
         $file = Storage::disk('users')->get($filename);
         return new Response($file, 200);
+    }
+    
+    public function profile($user_name)
+    {
+        $user = User::where('nick', $user_name)->first();
+        $images = Image::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+        return view('user.profile', [
+            'user' => $user,
+            'images' => $images,
+            'compact' => false
+        ]);
     }
 }

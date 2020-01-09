@@ -62,7 +62,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href=" {{ route('image.create') }} ">Subir Imagen</a>
                         </li>
-
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -70,8 +69,12 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item"
+                                    href="{{ route('user.profile', ['user_name' => \Auth::user()->nick]) }}">
                                     Perfil
+                                </a>
+                                <a class="dropdown-item" href="{{ route('like.favorites') }}">
+                                    Favoritos
                                 </a>
                                 <a class="dropdown-item" href="{{ route('user.config') }}">
                                     Configuracion
@@ -96,7 +99,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main {{-- class="py-4" --}}>
             @yield('content')
         </main>
     </div>

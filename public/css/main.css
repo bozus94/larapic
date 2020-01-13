@@ -7,6 +7,21 @@ input.form-control:focus {
     -webkit-box-shadow: none;
 }
 
+.btn_flat {
+  background: none;
+  border: 0;
+  color: inherit;
+  /* cursor: default; */
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-user-select: none; /* for button */
+   -webkit-appearance: button; /* for input */
+     -moz-user-select: none;
+      -ms-user-select: none;
+}
+
 img {
     vertical-align: top;
     object-fit: cover;
@@ -77,8 +92,16 @@ img {
     object-fit: cover;
 }
 
+.publi_image .img_info .img_descripcion span,   
 .publi_image .img_info .img_descripcion {
-    font-size: 1.05rem;
+   
+	font-size: 0.95rem;
+	line-height: 1.1em;
+}
+
+.publi_image .img_info span {
+	font-size: 0.8rem;
+	line-height: 1.1em;
 }
 
 .publi_image .img_info .img_stats_actions {
@@ -94,6 +117,9 @@ img {
     width: 100%;
     text-decoration: none;
     padding: .7rem 5rem;
+}
+.img_info .img_stats_actions .action_item:hover{
+    background-color: rgba(0,0,255,.5)
 }
 
 .publi_image .img_info .img_stats_actions i {
@@ -149,7 +175,7 @@ img {
     margin-bottom: 0;
 }
 
-.profile.container .card.publi_image {
+.profile .container .card.publi_image {
     margin-top: 1.5rem;
 }
 
@@ -165,4 +191,18 @@ img {
 
 .profile .publi_image .container_img_pub img {
     height: 100%;
+}
+
+.profile .profile-info img{
+    max-height: 13imgem;
+    margin-bottom: 2em;
+}
+.container_img{
+    height: 250px;
+    width: 250px;
+}
+.container_img img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover   ;
 }

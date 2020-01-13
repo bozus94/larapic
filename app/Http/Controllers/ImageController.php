@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Like;
 use App\Image;
+use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\support\facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -82,5 +85,61 @@ class ImageController extends Controller
             'image' => $image,
             'compact' => false
         ]);
+    }
+
+    public function delete($id){
+        /* obetenemos el objeto de usuario y la imagen a eliminar */
+        $user = \Auth::user();
+        $image = Image::find($id);
+        /* obtetemos los likes y los cometarios que pertenecen a la imagen */
+        $comments = Comment::where('image_id', $id)->get();
+        $likes = Like::where('image_id', $id)->get();
+
+        /* comprobamos que el id del usuario logueado sea igual que el id del usuairo propietario de la imagen */
+        if($user && $image && $user->id == $image->user_id){
+
+            /* comprobamos que la imagen contenga likes si es asi se procede a eliminarlos */
+            if($likes && count($likes)>1){
+                foreach ($likes as $like) {
+                    $like->delete();
+                }
+            }
+            /* comprobamos que la imagen contenga comentarios si es asi se procede a eliminarlos */
+            if($comments && count($comments)>1){
+                foreach ($comments as $comment) {
+                    $comment->delete();
+                }
+            }
+            /* eliminaos el archivo de la imagen del disco */
+            Storage::disk('images')->delete($image->image_path);
+
+            /* eliminamos el objeto imagen */
+            $image->delete();
+
+            $message = array('message' => 'Imagen eliminada correctamente');
+
+
+        }else{
+            $message = array('message' => 'NO se pudo eliminar la imagen');
+        }
+
+        return redirect()->route('home')->with($message);
+    }
+
+    public function edit($id){
+        $image = Image::findOrFail($id);
+        $user = Auth::user();
+/*         return $image;
+        die();
+*/      if($user && $image && $user->id == $image->user_id){
+            return view('images.edit', compact('image'));
+        }else{
+            return redirect()->back();
+        }
+
+    }
+
+    public function update(Request $request) {
+        return $request->all();
     }
 }

@@ -32,6 +32,9 @@ Route::get('/image/create', 'ImageController@create')->name('image.create');
 Route::post('/image/upload', 'ImageController@upload')->name('image.upload');
 Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');
 Route::get('/image/{filename}', 'ImageController@detail')->name('image.detail');
+Route::get('/image/delete/{id}', 'ImageController@delete')->name('image.delete');
+Route::get('/image/edit/{id}', 'ImageController@edit')->name('image.edit');
+Route::post('/image/update', 'ImageController@update')->name('image.update');
 
 /* ROUTE COMMMENT */
 Route::post('/comment/newComment', 'CommentController@newComment')->name('comment.new');

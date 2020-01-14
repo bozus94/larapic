@@ -15,15 +15,17 @@ var_dump(session('description'));
                 <div class="card-header">
                     Editar Imagen
                 </div>
-
+                @include('includes.message')
                 <div class="card-body row">
                     <div class="container_img col-md-6">
-                        <img src="{{ route('image.file', ['filename'=> $image->image_path]) }}" alt="">
+                        <a href="{{ route('image.detail', ['filename' => $image->id]) }}" class="">
+                            <img src="{{ route('image.file', ['filename'=> $image->image_path]) }}" alt="">
+                        </a>
                     </div>
                     <div class="col-md-6">
                         <form action="{{ route('image.update' ) }} " method="POST" enctype="multipart/form-data">
                             @csrf
-
+                            <input type="hidden" name="image_id" value="{{ $image->id }}">
                             <div class="form-group row">
                                 <label for="image_path" class="col-md-3 col-form-label text-md-right">
                                     Imagen
@@ -53,7 +55,7 @@ var_dump(session('description'));
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                    @enderror
+                                   @enderror
                                 </div>
 
                             </div>
@@ -62,6 +64,9 @@ var_dump(session('description'));
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-3">
                                     <input type="submit" value="Editar imagen" class="btn btn-primary">
+                                </div>
+                                <div class="col-md-6 offset-md-3">
+                                   
                                 </div>
                             </div>
                         </form>

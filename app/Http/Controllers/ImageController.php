@@ -55,7 +55,6 @@ class ImageController extends Controller
         if ($image_path) {
             /* seteamos el nombre del archivo */
             $image_name = time().$image_path->getClientOriginalName();
-            var_dump($image_name);
             Storage::disk('images')->put($image_name, File::get($image_path));
             $image->image_path = $image_name;
         }
@@ -129,9 +128,7 @@ class ImageController extends Controller
     public function edit($id){
         $image = Image::findOrFail($id);
         $user = Auth::user();
-/*         return $image;
-        die();
-*/      if($user && $image && $user->id == $image->user_id){
+        if($user && $image && $user->id == $image->user_id){
             return view('images.edit', compact('image'));
         }else{
             return redirect()->back();
@@ -140,6 +137,40 @@ class ImageController extends Controller
     }
 
     public function update(Request $request) {
-        return $request->all();
+        /* validar datos */
+        $validate = $this->validate($request,[
+            'image_path' => ['image'],
+            'description' => ['required']
+        ]);
+
+        /* recoger los datos  */
+        $image_path = $request->file('image_path') ?? false;
+        $description = $request->input('description');
+        $image_id = $request->input('image_id');
+
+        /* asingar valores al objeto */
+        $image = Image::find($image_id);
+        $image->description = $description;
+        
+        if($image_path){
+            /* eliminar imagen anterior del disco*/
+            Storage::disk('images')->delete($image->image_path);
+
+            /* preparar la nueva imagen */
+            /* nombramos la image */
+            $image_name = time() . $image_path->getClientOriginalName();
+            /* insertamos la nieva imagen en el directorio */
+            Storage::disk('images')->put($image_name, File::get($image_path));
+            /* seteamos el nombre la imagen en el objeto imagen */
+            $image->image_path = $image_name;
+        }
+
+        /* ejecutamos la cosulta y la accion posterior */
+
+        $image->save();
+
+        return redirect()->route('image.edit', ['id' => $image->id])->with([
+            'message'=>'imagen actuazada exitosamnete'
+        ]);
     }
 }

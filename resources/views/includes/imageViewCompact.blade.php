@@ -1,12 +1,11 @@
-<div class="card publi_image">
-    <div class="card-body">
-        <div class="container_img_pub">
 
-            <a href="{{ route('image.detail',['filename'=>$image->id]) }}"><img src="{{ route('image.file', [
+<div class="card">
+    <a href="{{ route('image.detail',['filename'=>$image->id]) }}"><img src="{{ route('image.file', [
                 'filename' => $image->image_path
-            ]) }}" alt=""></a>
-
-        </div>
-    </div>
-    {{-- ./card-body --}}
+            ]) }}" alt="" class="card-image-top"></a>
+    {{--<div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div> --}}
 </div>

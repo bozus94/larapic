@@ -57,10 +57,13 @@
                         @endif
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">Inicio</a>
+                            <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('image.create') }} ">Subir Imagen</a>
+                            <a class="nav-link" href="{{ route('persons') }}"><i class="fas fa-users"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ route('image.create') }} "><i class="fas fa-upload"></i></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -91,7 +94,7 @@
                             </div>
                         </li>
                         <li>
-                            @include('includes.avatar')
+                            
                         </li>
                         @endguest
                     </ul>

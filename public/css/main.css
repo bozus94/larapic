@@ -16,8 +16,10 @@ input.form-control:focus {
     line-height: normal;
     overflow: visible;
     padding: 0;
-    -webkit-user-select: none; /* for button */
-    -webkit-appearance: button; /* for input */
+    -webkit-user-select: none;
+    /* for button */
+    -webkit-appearance: button;
+    /* for input */
     -moz-user-select: none;
     -ms-user-select: none;
 }
@@ -117,6 +119,7 @@ img {
     text-decoration: none;
     padding: 0.7rem 5rem;
 }
+
 .img_info .img_stats_actions .action_item:hover {
     background-color: rgba(0, 0, 255, 0.5);
 }
@@ -125,7 +128,7 @@ img {
     font-size: 1.4rem;
 }
 
-.img_info .img_stats_actions > div:nth-child(2) {
+.img_info .img_stats_actions>div:nth-child(2) {
     border: 0 0.1rem solid #292b2c;
 }
 
@@ -196,19 +199,34 @@ img {
     max-height: 13rem;
     margin-bottom: 2em;
 }
+
 .container_img {
     height: 250px;
     width: 250px;
 }
+
 .container_img img {
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
+
 .card.card-persons .card-header {
     text-align: center;
     border-bottom: none;
 }
+
 .card.card-persons .card-header .card-img-top {
     width: 70%;
+}
+
+/* ramonds */
+.mh-230 {
+    height: 230px;
+    max-height: 230px;
+}
+
+.scale-hover:hover {
+    transition: transform .2s ease-in-out;
+    transform: scale(1.02);
 }

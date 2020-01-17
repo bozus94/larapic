@@ -17,16 +17,17 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-     public function index($search = null){
-         if(trim($search)){
-             $users = User::where('nick','LIKE','%'.$search.'%')
-                            ->orWhere('name','LIKE','%'.$search.'%')
-                            ->orWhere('surname','LIKE','%'.$search.'%')
+    public function index($search = null)
+    {
+        if (trim($search)) {
+            $users = User::where('nick', 'LIKE', '%'.$search.'%')
+                            ->orWhere('name', 'LIKE', '%'.$search.'%')
+                            ->orWhere('surname', 'LIKE', '%'.$search.'%')
                             ->orderBy('id', 'desc')
                             ->paginate(16);
-         }else{
-             $users = User::orderBy('id', 'desc')->paginate(16);
-         }
+        } else {
+            $users = User::orderBy('id', 'desc')->paginate(16);
+        }
 
         return view('user.index', ['users' => $users]);
     }
@@ -114,13 +115,10 @@ class UserController extends Controller
     {
         $user = User::where('nick', $user_name)->first();
         $images = Image::where('user_id', $user->id)->orderBy('id', 'desc')->get();
-        var_dump($user);
         return view('user.profile', [
             'user' => $user,
             'images' => $images,
             'compact' => false
         ]);
     }
-
-   
 }

@@ -1,11 +1,7 @@
-
-<div class="card">
-    <a href="{{ route('image.detail',['filename'=>$image->id]) }}"><img src="{{ route('image.file', [
-                'filename' => $image->image_path
-            ]) }}" alt="" class="card-image-top"></a>
-    {{--<div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div> --}}
+<div class="col">
+    <div class="card mb-4">
+        <a href="{{ route('image.detail',['filename'=>$image->id]) }}"><img src="{{ route('image.file', [
+            'filename' => $image->image_path
+        ]) }}" alt="" class="card-img-top mh-230 scale-hover"></a>
+    </div>
 </div>

@@ -12,17 +12,17 @@
     </div>
     <div class="container py-4">
         @include('includes.message')
-       {{--  <div class="row justify-content-center">
+        {{--  <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="d-flex justify-content-around justify-content-start flex-wrap">
                    
                 </div>
             </div>
         </div> --}}
-        <div class="row row-cols-1 row-cols-md-2">
+        <div class="row row-cols-1 row-cols-md-3">
             @foreach ($images as $image)
-                @include('includes.imageViewCompact', ['images' => $image] )
+            @include('includes.imageViewCompact', ['images' => $image] )
             @endforeach
         </div>
     </div>
-@endsection
+    @endsection
